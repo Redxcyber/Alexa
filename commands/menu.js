@@ -1,5 +1,4 @@
 const { allCommands } = require('../index');
-const config = require('../config');
 
 module.exports = {
   command: 'menu',
@@ -7,8 +6,8 @@ module.exports = {
   func: async (sock, msg, text) => {
     let cmd = '';
     allCommands().forEach(async (cm) => {
-       if (cm.command !== 'menu') cmd += '*' + config.PREFIX + cm.command + '*\n```' + cm.info + '```\n\n';
+       if (cm.command !== 'menu') cmd += '*/' + cm.command + '*\n```' + cm.info + '```\n\n';
     });
-    return await msg.reply(cmd);
+    return await msg.editMessage(msg.key, cmd);
   }
 }
