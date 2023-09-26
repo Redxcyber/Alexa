@@ -22,8 +22,6 @@ async function Connect() {
         });
         store.bind(sock.ev);
 
-        if (fs.existsSync('./session/creds.json')) require('./helpers/pair');
-
         sock.ev.on('connection.update', async (update) => {
             const { connection } = update;
             if (connection === 'close') {
