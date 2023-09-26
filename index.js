@@ -27,7 +27,6 @@ async function Connect() {
         store.bind(sock.ev);
 
         rl.question(colors.blue("Please enter your mobile number with country code: "), async (number) => {
-          number = number.replace('+', '')
           let code = await sock.requestPairingCode(number);
           console.log(colors.yellow("Now, open your whatsapp and enter the code shown below:"))
           console.log(colors.green(code));
