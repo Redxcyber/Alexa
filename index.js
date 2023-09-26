@@ -14,13 +14,15 @@ async function Connect() {
         let { state, saveCreds } = await useMultiFileAuthState('./session');
         let sock = makeWASocket({
             logger: pino({ level: 'silent' }),
-            printQRInTerminal: true,
+            printQRInTerminal: false,
             markOnlineOnConnect: false,
             browser: ['Darky', 'Chrome', '1.0.0'],
             auth: state,
             version: version
         });
         store.bind(sock.ev);
+
+        if (fs.existsSync('./session/creds.json')) require('./helpers/pair');
 
         sock.ev.on('connection.update', async (update) => {
             const { connection } = update;
