@@ -5,9 +5,6 @@ const readline = require('readline');
 const qrcode = require('qrcode-terminal');
 const fs = require('fs');
 
-let rl = readline.createInterface(
-                    process.stdin, process.stdout);
-
 async function Connect() {
     try {
         let store = makeInMemoryStore({
@@ -18,21 +15,13 @@ async function Connect() {
         let { state, saveCreds } = await useMultiFileAuthState('./session');
         let sock = makeWASocket({
             logger: pino({ level: 'silent' }),
-            printQRInTerminal: false,
+            printQRInTerminal: true,
             markOnlineOnConnect: false,
             browser: ['Darky', 'Chrome', '1.0.0'],
             auth: state,
             version: version
         });
         store.bind(sock.ev);
-
-        if (!sock.authState.creds.registered) {
-          rl.question(colors.blue("Please enter your mobile number with country code: "), async (number) => {
-            let code = await sock.requestPairingCode(number);
-            console.log(colors.yellow("Now, open your whatsapp and enter the code shown below:"))
-            console.log(colors.green(code));
-          });
-        }
 
         sock.ev.on('connection.update', async (update) => {
             const { connection } = update;
