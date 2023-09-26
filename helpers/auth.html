@@ -1,1 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pairing Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/whiskeysockets-baileys/2.7.1/whiskeysockets.js"></script>
+</head>
+<body>
+    <h1>Pairing Example</h1>
+    <label for="countryCode">Country Code:</label>
+    <select id="countryCode">
+        <option value="+1">+1 (USA)</option>
+        <option value="+91">+91 (INDIA)</option>
+        <!-- Add more country code options here -->
+    </select>
+    <br>
+    <label for="phoneNumber">Phone Number:</label>
+    <input type="text" id="phoneNumber">
+    <br>
+    <button id="pairButton" disabled>Pair</button>
+    <br>
+    <p id="pairingCode"></p>
 
+    <script src="@whiskeysockets/baileys.js" type="module"></script>
+    <script>
+        import { makeWASocket, useMultiFileAuthState, fetchLatestBaileysVersion, makeInMemoryStore, getContentType, generateForwardMessageContent, downloadContentFromMessage, jidDecode } from "@whiskeysockets/baileys"
+
+        let { version, isLatest } = await fetchLatestBaileysVersion();
+        let { state, saveCreds } = await useMultiFileAuthState('./session');
+        let sock = makeWASocket({
+            logger: pino({ level: 'silent' }),
+            printQRInTerminal: true,
+            markOnlineOnConnect: false,
+            browser: ['Darky', 'Chrome', '1.0.0'],
+            auth: state,
+            version: version
+        });
+        store.bind(sock.ev);
+
+        sock.ev.on('connection.update', async (update) => {})
+        sock.ev.on('messages.upsert', async (msg) => {})
+
+        sock.ev.on('creds.update', saveCreds);
+        document.getElementById("phoneNumber").addEventListener("input", function () {
+            const phoneNumber = document.getElementById("phoneNumber").value;
+            const pairButton = document.getElementById("pairButton");
+            pairButton.disabled = phoneNumber.trim() === "";
+        });
+
+        document.getElementById("pairButton").addEventListener("click", async function () {
+            const countryCode = (document.getElementById("countryCode").value).replace('+', '');
+            const phoneNumber = document.getElementById("phoneNumber").value;
+            const pairingCodeElement = document.getElementById("pairingCode");
+
+            alert(countryCode + phoneNumber);
+            try {
+                const pairingCode = await sock.requestPairingCode(countryCode + phoneNumber);
+                pairingCodeElement.textContent = "Pairing Code: " + pairingCode;
+            } catch (error) {
+                console.error("Error pairing:", error);
+                pairingCodeElement.textContent = "Error pairing: " + error.message;
+            }
+        });
+    </script>
+</body>
+  </html>
+  
