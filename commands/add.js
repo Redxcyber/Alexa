@@ -2,6 +2,8 @@ module.exports = {
   command: 'add',
   info: 'Adds user to group from entered number.',
   func: async (sock, msg, text) => {
+    if (!msg.isGroup) return await sock.editMessage(msg.key, '*This command can only be used in group!*');
+    if (!msg.isAdmin(msg.me)) return await sock.editMessage(msg.key, '*I\'m not an admin!*');
     if (!text && !msg.replied) return await sock.editMessage(msg.key, '*Please enter a number with +country code to add!*');
     if (msg.replied) {
       await sock.groupParticipantsUpdate(msg.chat, [msg.replied.sender], 'add');
