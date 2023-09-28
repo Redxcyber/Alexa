@@ -6,8 +6,8 @@ module.exports = {
   func: async (sock, msg, text) => {
     let cmd = '';
     allCommands().forEach(async (cm) => {
-       if (cm.command !== 'menu') cmd += '*/' + cm.command + '*\n```' + cm.info + '```\n\n';
+       if (cm.command !== 'menu') cmd += '*/' + cm.command + '*\n_' + cm.info + '_\n\n';
     });
-    return await msg.editMessage(msg.key, cmd);
+    return await sock.editMessage(msg.key, cmd);
   }
 }
