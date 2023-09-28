@@ -10,7 +10,7 @@ module.exports = {
       msg.mentions.map(async (user) => {
         await sock.groupParticipantsUpdate(msg.chat, [user], 'promote');
       });
-      return await sock.editMessage(msg.key, '*Successfully promote:*\n@' + msg.mentions.map((user) => user.split('@')[0]).join('\n@'));
+      return await sock.editMessage(msg.key, '*Successfully promoted:*\n@' + msg.mentions.map((user) => user.split('@')[0]).join('\n@'));
     }
   }
 };
