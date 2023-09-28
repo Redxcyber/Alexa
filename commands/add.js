@@ -5,6 +5,7 @@ module.exports = {
     if (!text && !msg.replied) return await sock.editMessage(msg.key, '*Please enter a number with +country code to add!*');
     if (msg.replied) {
       let isParticipant = await msg.isParticipant(msg.chat, msg.replied.sender);
+      console.log(isParticipant)
       if (isParticipant) return await sock.editMessage(msg.key, '*@' + msg.replied.sender + ' is already a participant of this group!*');
       await sock.groupParticipantsUpdate(msg.chat, [msg.replied.sender], 'add');
       return await sock.editMessage(msg.key, '*Successfully added!*');
