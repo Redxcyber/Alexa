@@ -1,5 +1,5 @@
 module.exports = {
-  name: 'about',
+  command: 'about',
   info: 'Gets about of replied user or sets about with provided text.',
   func: async (sock, msg, text) => {
     if (!text && !msg.replied && !msg.mention) return await sock.editMessage(msg.key, '*Please reply or mention any user to get about or enter some text to set about!*');
