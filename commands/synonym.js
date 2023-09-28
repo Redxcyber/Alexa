@@ -14,5 +14,6 @@ module.exports = {
        res += '*' + i + '. ' + data.term + '*';
       }
     });
+    return await sock.editMessage(msg.key, res);
   }
 };
