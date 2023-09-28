@@ -42,7 +42,9 @@ msg.isAdmin = async (who) => {
 }
 msg.isParticipant = async (who) => {
  let group = await sock.groupMetadata(msg.chat);
- return group.participants.find(p => p.id === who);
+ let participant = group.participants.find(p => p.id === who);
+ if (participant.length < 1) return false;
+ return true;
 }
 msg.getMentions = async (message) => {
  let mentions = [];
