@@ -1,5 +1,5 @@
 module.exports = {
-  command: 'promote',
+  command: 'demote',
   info: 'Takes admin authority back from replied or mentioned user.',
   func: async (sock, msg, text) => {
     if (!text && !msg.replied) return await sock.editMessage(msg.key, '*Please reply or mention any user!*');
