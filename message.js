@@ -40,8 +40,8 @@ msg.isAdmin = async (who) => {
  let participant = group.participants.find(p => p.id === who);
  if (participant) return (participant.admin === 'superadmin' || participant.admin === 'admin') ? true : false;    
 }
-msg.isParticipant = async (who) => {
- let group = await sock.groupMetadata(msg.chat);
+msg.isParticipant = async (who, chat = msg.chat) => {
+ let group = await sock.groupMetadata(chat);
  let participant = group.participants.find(p => p.id === who);
  if (participant.length < 1) return false;
  return true;
@@ -77,7 +77,7 @@ sock.getName = async (id) => {
   }
  }
  sock.editMessage = async (key, message) => {
-  return await sock.relayMessage(msg.key.remoteJid, { protocolMessage: { key: key, type: 14, editedMessage: { conversation: message } }, }, {});
+  return await sock.relayMessage(msg.key.remoteJid, { protocolMessage: { key: key, type: 14, editedMessage: { conversation: message, mentions: (await msg.getMentions(message)) } }, }, {});
  }
  return msg;
 }
