@@ -9,8 +9,8 @@ module.exports = {
     let data = json.data.definitionData.definitions[0].synonyms;
     if (data.length < 1) return await sock.editMessage(msg.key, '*Unable to find synonyms for ' + text + '!*');
     let res = '*Synonyms for:* _' + text + '_\n\n';
-    data.forEach(async (i, data) => {
-      if (i !== 11) res += '*' + i + '. ' + data.term + '*';
+    data.forEach(async (data, i) => {
+      if (i < 11) res += '*' + i + '. ' + data.term + '*';
     });
     return await sock.editMessage(msg.key, res);
   }
