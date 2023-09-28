@@ -40,6 +40,10 @@ msg.isAdmin = async (who) => {
  let participant = group.participants.find(p => p.id === who);
  if (participant) return (participant.admin === 'superadmin' || participant.admin === 'admin') ? true : false;    
 }
+msg.isParticipant = async (who) => {
+ let group = await sock.groupMetadata(msg.chat);
+ return group.participants.find(p => p.id === who);
+}
 msg.getMentions = async (message) => {
  let mentions = [];
  try { 
