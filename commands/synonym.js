@@ -6,9 +6,13 @@ module.exports = {
   func: async (sock, msg, text) => {
     if (!text) return await sock.editMessage(msg.key, '*Please enter a term to find synonyms!*');
     let json = await parseJson('https://tuna.thesaurus.com/pageData/' + text);
-    let synonyms = json.data.synonyms;
-    for (let synonym of synonyms) {
-      
-    }
+    let data = json.data.definitionData.definitions[0].synonyms;
+    if (!data.length < 1) return await sock.editMessage(msg.key, '*Unable to find synonyms for ' + text + '!*');
+    let res = '*Synonyms for:* _' + text + '_\n\n';
+    data.forEach(async (i, data) => {
+      if (data.length < 11) {
+       res += '*' + i + '. ' + data.term + '*';
+      }
+    });
   }
 };
