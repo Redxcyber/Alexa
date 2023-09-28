@@ -10,7 +10,7 @@ module.exports = {
          .about
       );
     } else if (msg.mention.length > 0) {
-      msg.mention.map((user) => {
+      msg.mention.map(async (user) => {
         return await sock.editMessage(
           msg.key,
           '*' + await sock.getName(user) + ':* '
@@ -21,7 +21,7 @@ module.exports = {
     } else if (text) {
       await sock.setAbout(msg.me, text).then(async (_) => {
        return await sock.editMessage(msg.key, '*Successfully set about!*');
-      }).catch((_) => {
+      }).catch(async (_) => {
        return await sock.editMessage(msg.key, '*Unable to set about!*');
       });
     }
