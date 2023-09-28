@@ -6,7 +6,7 @@ module.exports = {
   func: async (sock, msg, text) => {
     if (!text) return await sock.editMessage(msg.key, '*Please enter a term to find antonyms!*');
     let json = await parseJson('https://tuna.thesaurus.com/pageData/' + text);
-    let data = json.data.definitionData.definitions[0].antonym;
+    let data = json.data.definitionData.definitions[0].antonyms;
     if (data.length < 1) return await sock.editMessage(msg.key, '*Unable to find antonyms for ' + text + '!*');
     let res = '*Antonyms for:* _' + text + '_\n\n';
     data.forEach((d, i) => {
