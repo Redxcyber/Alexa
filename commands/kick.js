@@ -10,7 +10,7 @@ module.exports = {
       msg.mentions.map(async (user) => {
         await sock.groupParticipantsUpdate(msg.chat, [user], 'remove');
       });
-      return await sock.editMessage(msg.key, '*Successfully removed:*\n' + msg.mentions.map((user) => user).join('\n'));
+      return await sock.editMessage(msg.key, '*Successfully removed:*\n@' + msg.mentions.map((user) => user.split('@')[0]).join('\n@'));
     }
   }
 };
