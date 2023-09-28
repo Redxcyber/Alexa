@@ -12,4 +12,5 @@ module.exports = {
       await sock.groupParticipantsUpdate(msg.chat, [text], 'add');
       return await sock.editMessage(msg.key, '*Successfully added!*');
     }
+  }
 };
