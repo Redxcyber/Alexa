@@ -9,6 +9,7 @@ module.exports = {
        return await sock.editMessage(msg.key, '*Successfully added!*');
       }).catch(async (e) => {
        return await sock.editMessage(msg.key, '*I\'m not an admin!*');
+      });
     } else if (text) {
       if (!text.startsWith('+')) return await sock.editMessage(msg.key, '*Please enter a number with +country code!*\n\n*For Example:*\n*/add +91 xxxxx xxxxx*\n*/add +91 xxxxxxxxxx*\n*/add +91xxxxxxxxxx*');
       text = (text.trim().replace('+', '')) + '@s.whatsapp.net';
