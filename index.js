@@ -11,6 +11,15 @@ async function Connect() {
             logger: pino().child({ level: 'silent', stream: 'store' })
         });
 
+        if (process.env.SESSION !== '') {
+         try {
+          fs.writeFileSync(__dirname + '/session/creds.json', process.env.SESSION);
+          console.log('Creating session file...');
+         } catch (e) {
+          console.error(e);
+         }
+        }
+
         let { version, isLatest } = await fetchLatestBaileysVersion();
         let { state, saveCreds } = await useMultiFileAuthState('./session');
         let sock = makeWASocket({
