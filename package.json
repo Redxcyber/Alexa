@@ -4,6 +4,7 @@
   "description": "WhatsApp Bot",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"No tests specified\" && exit 0"
   },
   "author": "DarkDevOfficial",
@@ -13,7 +14,7 @@
     "url": "https://github.com/DarkDevOfficial/Darky"
   },
   "dependencies": {
-    "@whiskeysockets/baileys": "^6.4.0",
+    "@whiskeysockets/baileys": "^6.5.0",
     "@adiwajshing/keyed-db": "^0.2.4",
     "colors": "^1.4.0",
     "qrcode-terminal": "^0.12.0",
