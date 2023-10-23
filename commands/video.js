@@ -11,7 +11,7 @@ module.exports = {
       return await sock.editMessage(dmsg.key, '*❌ Invalid url, Please enter a valid youtube video url.*');
     }
     await sock.editMessage(msg.key, '*Downloading video...*');
-    let file = __dirname + '/src/' + video + '.mp4';
+    let file = '../src/' + video + '.mp4';
     let vid = ytdl(video, {
       filter: format => format.container === 'mp4' && ['720p', '480p', '360p', '240p', '144p']
         .map(() => true)
