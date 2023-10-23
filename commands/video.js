@@ -1,5 +1,5 @@
 const fs = require('fs');
-
+const ytdl = require('ytdl-core');
 module.exports = {
   command: 'ytvid',
   info: 'Downloads video from YouTube from its URL.',
