@@ -5,6 +5,7 @@ module.exports = {
   command: 'video',
   info: 'Downloads video from YouTube from its URL.',
   func: async (sock, msg, text) => {
+    if (!text) return await sock.editMessage('*Please enter a YouTube video url!*');
     let video = '';
     try {
       video = text.replace(/watch?v=/g, '').split('/')[3];
