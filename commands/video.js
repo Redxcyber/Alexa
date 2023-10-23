@@ -21,7 +21,7 @@ module.exports = {
       await sock.sendMessage(msg.chat,
        { delete: msg.key }
       ).then(async () => {
-       await sock.sendMessage(msg.chat, { video: fs.readFileSync(file), mimetype: 'video/mkv' });
+       await sock.sendMessage(msg.chat, { video: fs.readFileSync(file), mimetype: 'video/mp4' });
        fs.unlinkSync(file);
       })
     });
