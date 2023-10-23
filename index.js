@@ -86,11 +86,12 @@ function allCommands() {
  return commands;
 }
 
-let server = http.createServer(async (req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.write('<h1>Darky is active!</h1>');
-  res.end();
-}).listen(5555, () => true);
+let server = require('http')
+  .createServer(async (req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write('<h1>Darky is active!</h1>');
+    res.end();
+  }).listen(process.env.PORT || 8080, () => true);
 
 Connect();
 
