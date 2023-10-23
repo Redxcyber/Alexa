@@ -1,8 +1,6 @@
 const { default: makeWASocket, useMultiFileAuthState, fetchLatestBaileysVersion, makeInMemoryStore, getContentType, generateForwardMessageContent, downloadContentFromMessage, jidDecode } = require('@whiskeysockets/baileys');
 const pino = require('pino');
 const colors = require('colors');
-const http = require('http');
-const readline = require('readline');
 const qrcode = require('qrcode-terminal');
 const fs = require('fs');
 
