@@ -11,9 +11,9 @@ module.exports = {
       await sock.editMessage(dmsg.key, '*❌ Invalid url, Please enter a valid youtube video url.*');
     }
     await sock.editMessage(msg.key, '*Downloading video...*');
-    let file = video + '.mp4';
+    let file = '../src/' + video + '.mp4';
     let vid = ytdl(video, {
-      filter: format => format.container === 'mp4' && ['720p', '480p', '360p', '240p', '144p']
+      filter: format => format.container === 'mp4' && ['1080p', '720p', '480p', '360p', '240p', '144p']
         .map(() => true)
     })
     vid.pipe(fs.createWriteStream(file));
@@ -21,8 +21,7 @@ module.exports = {
       await sock.sendMessage(msg.chat,
        { delete: msg.key }
       ).then(async () => {
-       await sock.sendMessage(msg.chat, { video: fs.readFileSync(file), mimetype: 'video/mp4' });
-       fs.unlinkSync(file);
+       await sock.sendMessage(msg.chat, { video: fs.readFileSync(file), mimetype: 'video/mkv' });
       })
     });
   }
