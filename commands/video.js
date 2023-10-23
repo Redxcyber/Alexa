@@ -17,7 +17,7 @@ module.exports = {
     vid.pipe(fs.createWriteStream('../' + video + '.mp4'));
     await sock.editMessage(dmsg.key, '*Downloading video...*');
     vid.on('end', async () => {
-     // await sock.
+      await sock.sendMessage(msg.chat, { delete: dmsg.key })
       await sock.sendMessage(msg.chat, { video: fs.readFileSync('../' + video + '.mp4'), mimetype: 'video/mpeg' });
     });
   }
