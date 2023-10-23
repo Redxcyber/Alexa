@@ -6,6 +6,7 @@ module.exports = {
   info: 'Downloads video from YouTube from its URL.',
   func: async (sock, msg, text) => {
     if (!text) return await sock.editMessage('*Please enter a YouTube video url!*');
+    let ytregex = /https:\/\/(?:www\.)?youtube\.com\/watch\?v=[\w-]+|https:\/\/youtu\.be\/[\w-]+|https:\/\/(?:www\.)?youtube\.com\/shorts\/[\w-]+/i;
     let video = '';
     try {
       text = text.match(ytregex)[0] !== undefined ? text.match(ytregex)[0] : (() => { throw false; })()
