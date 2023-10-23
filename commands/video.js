@@ -12,7 +12,7 @@ module.exports = {
       text = text.match(ytregex)[0] !== undefined ? text.match(ytregex)[0] : (() => { throw false; })()
       video = (text.split('/').slice(-1)[0]).includes('?') ? text.split('/').slice(-1)[0].split('?')[0] : text.split('/').slice(-1)[0];
     } catch {
-      await sock.editMessage(dmsg.key, '*❌ Invalid url, Please enter a valid youtube video url.*');
+      await sock.editMessage(msg.key, '*❌ Invalid url, Please enter a valid youtube video url.*');
     }
     await sock.editMessage(msg.key, '*Downloading video...*');
     let file = video + '.mp4';
