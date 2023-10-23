@@ -7,7 +7,8 @@ module.exports = {
    if (!text) return await sock.editMessage(msg.key, '*Please enter your query to search in YouTube!*');
    await sock.editMessage(msg.key, '*🔍 Searching...*');
    try {
-    let results = await yts(match[1]);
+    let results = await yt(text);
+    await msg.reply(JSON.stringify(results));
    } catch {
     return await sock.editMessage(msg.key, '*❌ Unable to find results for your query!*');
    }
