@@ -8,7 +8,8 @@ module.exports = {
     if (!text) return await sock.editMessage('*Please enter a YouTube video url!*');
     let video = '';
     try {
-      video = text.replace(/watch?v=/g, '').split('/')[3];
+      text = text.match(ytregex)[0]
+      video = text !== undefined ? text.split('/').slice(-1)[0] : throw false;
     } catch {
       await sock.editMessage(dmsg.key, '*❌ Invalid url, Please enter a valid youtube video url.*');
     }
