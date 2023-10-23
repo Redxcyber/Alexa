@@ -1,7 +1,8 @@
 const fs = require('fs');
 const ytdl = require('ytdl-core');
+
 module.exports = {
-  command: 'ytvid',
+  command: 'video',
   info: 'Downloads video from YouTube from its URL.',
   func: async (sock, msg, text) => {
     let video = '';
@@ -21,7 +22,7 @@ module.exports = {
       await sock.sendMessage(msg.chat,
        { delete: msg.key }
       ).then(async () => {
-       await sock.sendMessage(msg.chat, { video: fs.readFileSync(file), mimetype: 'video/mp4' });
+       await sock.sendMessage(msg.chat, { video: fs.readFileSync(file), thumbnail: Buffer.alloc(0), mimetype: 'video/mp4' });
        fs.unlinkSync(file);
       })
     });
