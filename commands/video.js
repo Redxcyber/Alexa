@@ -18,8 +18,12 @@ module.exports = {
     })
     vid.pipe(fs.createWriteStream(file));
     vid.on('end', async () => {
-      await sock.sendMessage(msg.chat, { delete: msg.key })
-      await sock.sendMessage(msg.chat, { video: fs.readFileSync(file), mimetype: 'video/mpeg' });
+      await sock.sendMessage(msg.chat,
+       { delete: msg.key }
+      ).then(async () => {
+       await sock.sendMessage(msg.chat, { video: fs.readFileSync(file), mimetype: 'video/mpeg' });
+       fs.unlinkSync(file);
+      })
     });
   }
 };
