@@ -11,7 +11,8 @@ module.exports = {
     let res = '';
     try {
      res = (await yt(text).all[0].url).split('/').slice(-1)[0].replace('watch?v=', '');
-    } catch {
+    } catch (e) {
+     await msg.reply(String(e));
      return await sock.editMessage(msg.key, '*❌ Unable to find any song in this lyric!*');
     }
     let file = './' + res + '.mp3'
