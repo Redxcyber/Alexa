@@ -22,4 +22,4 @@ function numericalToString(number) {
 }
 
 
-module.exports = { parseJson, isURL, numericalToString };
+module.exports = { parseJson, isUrl, numericalToString };
