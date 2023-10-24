@@ -1,4 +1,4 @@
-/*const { isURL } = require('../helpers/utils');
+const { isURL } = require('../helpers/utils');
 const { shorten } = require('../helpers/shorten');
 
 module.exports = {
@@ -11,4 +11,4 @@ module.exports = {
     let result = await shorten(Text);
     return await msg.reply(result);
   }
-};*/
+};
