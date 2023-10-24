@@ -16,5 +16,6 @@ module.exports = {
     } catch {
      return await sock.editMessage(msg.key, '*❌ Invalid Language, Please enter a valid language code!*');
     }
-    return await sock.sendMessage(msg.chat, { audio: { url: audio }, ptt: true, mimetype: 'audio/mpeg', waveform: Array(40).fill().map(() => Math.floor(Math.random() * 99)) })
-});
+    return await sock.sendMessage(msg.chat, { audio: { url: audio }, ptt: true, mimetype: 'audio/mpeg', waveform: Array(40).fill().map(() => Math.floor(Math.random() * 99)) });
+   }
+  };
