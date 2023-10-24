@@ -4,7 +4,7 @@ module.exports = {
   command: 'ud',
   info: 'Searches definition for your term in urban dictionary.',
   func: async (sock, msg, text) => {
-    if (!text) return await sock.editMessage(msg.key, '*Please enter a term to define!*');
+    if (!text) return await msg.reply('*Please enter a term to define!*');
     text = text.toLowerCase();
     let word, definition, example;
     try {
@@ -13,8 +13,8 @@ module.exports = {
      definition = dictionary['list'][0]['definition']
      example = dictionary['list'][0]['example']
     } catch {
-     return await sock.editMessage(msg.key, '*❌ Unable to find the definition for:*\n```' + text + '```');
+     return await msg.reply('*❌ Unable to find the definition for:*\n```' + text + '```');
     }
-    return await sock.editMessage(msg.key, `_Word_ :\n*${word}*\n_Definition_ :\n*${definition.replace(/(\[)|(\])/g, '').replace(/\r\n/g, '*\n*')}*\n_Example_ :\n*${example.replace(/(\[)|(\])/g, '').replace(/\r\n/g, '*\n*')}*`);
+    return await msg.reply(`_Word_ :\n*${word}*\n_Definition_ :\n*${definition.replace(/(\[)|(\])/g, '').replace(/\r\n/g, '*\n*')}*\n_Example_ :\n*${example.replace(/(\[)|(\])/g, '').replace(/\r\n/g, '*\n*')}*`);
   }
 };
