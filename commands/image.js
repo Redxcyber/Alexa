@@ -18,7 +18,7 @@ module.exports = {
      count.length = cl
      for (let c of count) {
       let url = result[Math.floor(Math.random() * result.length)].url
-      await client.sendMessage(msg.chat, { image: { url: url }, mimetype: 'image/png' });
+      await sock.sendMessage(msg.chat, { image: { url: url }, mimetype: 'image/png' });
      }
     });
    }
