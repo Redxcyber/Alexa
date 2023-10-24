@@ -3,6 +3,7 @@ const cheerio = require('cheerio');
 
 async function instagram(url) {
   return new Promise(async (resolve) => {
+   if (!url.match(/\/(reel|p|stories)\/[a-zA-Z0-9_-]+/i)) return resolve({ status: false });
    try {
     let json = await (await axios.post("https://saveig.app/api/ajaxSearch", require('querystring').stringify({ q: url, t: "media", lang: "en" }), {
      headers: {
