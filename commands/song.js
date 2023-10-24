@@ -5,13 +5,12 @@ module.exports = {
   command: 'song',
   info: 'Downloads song from given lyric.',
   func: async (sock, msg, text) => {
-    await msg.reply(JSON.stringify(await yt(text), null, 2));
     if (!text) return await sock.editMessage(msg.key, '*Please enter a song lyric!*');
     text += text.includes('http') ? '' : ' song';
     await sock.editMessage('*🔍 Searching for song...*');
     let res = '';
     try {
-     res = (await yt(text).all[0].url).split('/').slice(-1)[0].replace('watch?v=', '');
+     res = ((await yt(text)).all[0].url).split('/').slice(-1)[0].replace('watch?v=', '');
     } catch (e) {
      await msg.reply(String(e));
      return await sock.editMessage(msg.key, '*❌ Unable to find any song in this lyric!*');
