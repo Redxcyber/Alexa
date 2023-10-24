@@ -1,3 +1,4 @@
+const fs = require('fs');
 const yt = require('yt-search');
 const ytdl = require('ytdl-core');
 
@@ -30,8 +31,8 @@ module.exports = {
          await sock.sendMessage(msg.chat, { audio: fs.readFileSync(file), mimetype: 'audio/mp3', ptt: false });
        });
      });
-   } catch (e) {
-     await msg.reply(String(e));
+   } catch {
+     return await sock.editMessage(msg.key, '*❌ Unable to download the song!*');
    }
   }
 };
