@@ -8,6 +8,6 @@ module.exports = {
     allCommands().forEach(async (cm) => {
        if (cm.command !== 'menu') cmd += '*/' + cm.command + '*\n_' + cm.info + '_\n\n';
     });
-    return await sock.editMessage(msg.key, cmd);
+    return await msg.reply(cmd);
   }
 }
