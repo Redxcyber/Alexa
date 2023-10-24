@@ -10,10 +10,7 @@ module.exports = {
     await sock.editMessage('*🔍 Searching for song...*');
     let res = '';
     try {
-     res = await yt(text)
-     await msg.reply(JSON.stringify(res, null, 2));
-     res = (res.all[0].url).split('/').slice(-1)[0].replace('watch?v=', '');
-     res = res.includes('?') ? res.split('?')[0] : res;
+     res = (await yt(text).all[0].url).split('/').slice(-1)[0].replace('watch?v=', '');
     } catch {
      return await sock.editMessage(msg.key, '*❌ Unable to find any song in this lyric!*');
     }
